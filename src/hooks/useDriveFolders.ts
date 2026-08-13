@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { DriveFolder } from '../types';
 
-const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || 'AIzaSyB4E2PM8ueMmkfTaptHkr2VOT4UqoMpyjU';
 
 export function useDriveFolders(parentId?: string) {
   const [folders, setFolders] = useState<DriveFolder[]>([]);

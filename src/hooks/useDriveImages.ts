@@ -2,7 +2,7 @@
 import { useState, useEffect, useCallback } from 'react';
 import { DriveImage } from '../types';
 
-const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY;
+const API_KEY = import.meta.env.VITE_GOOGLE_API_KEY || 'AIzaSyB4E2PM8ueMmkfTaptHkr2VOT4UqoMpyjU';
 
 export function useDriveImages(folderId?: string) {
   const [images, setImages] = useState<DriveImage[]>([]);
