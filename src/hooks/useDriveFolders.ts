@@ -22,7 +22,6 @@ export function useDriveFolders(parentId?: string) {
       }
       
       if (!API_KEY) {
-        setError("Google API Key is missing. Please configure VITE_GOOGLE_API_KEY.");
         if (!isPolling) setLoading(false);
         return;
       }

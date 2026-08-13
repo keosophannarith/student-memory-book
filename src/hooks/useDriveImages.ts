@@ -21,7 +21,6 @@ export function useDriveImages(folderId?: string) {
     }
     
     if (!API_KEY) {
-      setError("Google API Key is missing. Please configure VITE_GOOGLE_API_KEY.");
       setLoading(false);
       return;
     }

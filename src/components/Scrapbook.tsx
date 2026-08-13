@@ -22,11 +22,7 @@ export function Scrapbook() {
       
       <div className="w-full flex-1 flex flex-col items-center max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl relative px-2 sm:px-6 lg:px-8">
         
-        {(classesError || studentsError) && (
-          <div className="w-full text-red-500 text-sm mb-4 bg-red-50 p-4 rounded-xl border border-red-100 shrink-0 mt-2 sm:mt-4">
-             {classesError || studentsError}
-          </div>
-        )}
+        {/* Error banner removed */}
 
         {/* 3D BookWrapper */}
         <div className="flex-1 w-full relative my-2 sm:my-6 md:my-8 z-10 perspective-[2000px] min-h-[580px] sm:min-h-[660px] md:min-h-[740px] lg:min-h-[800px] h-[calc(100vh-2rem)] sm:h-auto max-h-[920px]">

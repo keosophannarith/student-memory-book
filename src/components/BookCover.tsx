@@ -89,7 +89,7 @@ export function BookCover({
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
             <img 
-              src={`https://www.googleapis.com/drive/v3/files/1Gx6xmt-xXf6EkgmXWkUp6r9eLnULAZWl?alt=media&key=${import.meta.env.VITE_GOOGLE_API_KEY}`} 
+              src="https://lh3.googleusercontent.com/d/1Gx6xmt-xXf6EkgmXWkUp6r9eLnULAZWl" 
               alt="School Logo" 
               className="w-full h-full object-contain pointer-events-none drop-shadow-md"
             />
