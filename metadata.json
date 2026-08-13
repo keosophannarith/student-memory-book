@@ -1,0 +1,6 @@
+{
+  "name": "សៀវភៅកម្រងអនុស្សាវរីយ៍",
+  "description": "A digital memory scrapbook that displays text and photos from Google Drive.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
