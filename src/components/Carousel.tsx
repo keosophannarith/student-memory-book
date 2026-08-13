@@ -124,7 +124,7 @@ export function Carousel({ folderId, date }: CarouselProps) {
         >
           {/* Photo Section */}
           <div 
-            className="w-full h-[40vh] sm:h-auto sm:flex-1 sm:min-h-0 bg-[#fdfcfaf0] p-3 rounded-lg shadow-sm border border-stone-200/50 mb-6 relative overflow-hidden flex flex-col items-center justify-center pointer-events-auto"
+            className="w-full h-[35vh] sm:h-[42vh] md:h-auto md:flex-1 md:min-h-[280px] lg:min-h-[360px] bg-[#fdfcfaf0] p-2 sm:p-3 rounded-lg shadow-sm border border-stone-200/50 mb-3 sm:mb-6 relative overflow-hidden flex flex-col items-center justify-center pointer-events-auto"
             onPointerDown={(e) => { 
                 if (isZoomed) { e.stopPropagation(); }
             }}
@@ -152,12 +152,20 @@ export function Carousel({ folderId, date }: CarouselProps) {
 
           {/* Caption / Journal Section */}
           <div className="w-full flex-shrink-0 flex flex-col pointer-events-auto sm:mb-4 bg-white">
-            <div className="flex items-center justify-between text-stone-500 mb-4 border-b border-stone-200 pb-3">
-              <div className="flex items-center gap-2 text-sm font-medium tracking-wide">
-                <CalendarIcon className="w-4 h-4" />
+            <div className="flex items-center justify-between text-stone-500 mb-2 sm:mb-4 border-b border-stone-200 pb-2 sm:pb-3">
+              <div className="flex items-center gap-2 text-xs sm:text-sm font-medium tracking-wide">
+                <CalendarIcon className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#d4af37]" />
                 <span>{date || new Date().toLocaleDateString('km-KH')}</span>
               </div>
-              <BookOpen className="w-4 h-4" />
+
+              <div className="flex items-center gap-3 text-xs sm:text-sm font-medium">
+                {images.length > 1 && (
+                  <span className="bg-stone-100 px-2.5 py-0.5 rounded-full text-stone-600 font-sans text-xs">
+                    {effectiveIndex + 1} / {images.length}
+                  </span>
+                )}
+                <BookOpen className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#d4af37]" />
+              </div>
             </div>
 
             {(() => {
@@ -165,12 +173,12 @@ export function Carousel({ folderId, date }: CarouselProps) {
               const textIsKhmer = isKhmer(textContent);
               return (
                 <p 
-                  className={`w-full leading-[2.5rem] text-stone-800 text-lg md:text-xl ${textIsKhmer ? 'font-khmer' : 'font-serif'}`}
+                  className={`w-full leading-[2.2rem] sm:leading-[2.5rem] text-stone-800 text-base sm:text-lg md:text-xl ${textIsKhmer ? 'font-khmer' : 'font-serif'}`}
                   style={{
-                    backgroundImage: 'linear-gradient(transparent, transparent 39px, #f4f0e6 39px, #f4f0e6 40px)',
-                    backgroundSize: '100% 40px',
-                    lineHeight: '40px',
-                    minHeight: '120px'
+                    backgroundImage: 'linear-gradient(transparent, transparent 35px, #f4f0e6 35px, #f4f0e6 36px)',
+                    backgroundSize: '100% 36px',
+                    lineHeight: '36px',
+                    minHeight: '100px'
                   }}
                 >
                   {textContent}
@@ -182,15 +190,25 @@ export function Carousel({ folderId, date }: CarouselProps) {
         </motion.div>
       </AnimatePresence>
 
-      {/* Swipe Overlay Controls */}
-      <div className="absolute top-1/2 left-0 right-0 flex justify-between px-2 -translate-y-1/2 pointer-events-none opacity-0 sm:group-hover:opacity-100 transition-opacity z-10 hidden sm:flex">
-         <button onClick={(e) => { e.preventDefault(); goToPrev(); }} className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md shadow-md border border-stone-200 flex items-center justify-center text-stone-600 hover:bg-white pointer-events-auto hover:scale-105 transition-all">
-           <ChevronLeft className="w-6 h-6" />
-         </button>
-         <button onClick={(e) => { e.preventDefault(); goToNext(); }} className="w-10 h-10 rounded-full bg-white/80 backdrop-blur-md shadow-md border border-stone-200 flex items-center justify-center text-stone-600 hover:bg-white pointer-events-auto hover:scale-105 transition-all">
-           <ChevronRight className="w-6 h-6" />
-         </button>
-      </div>
+      {/* Navigation Overlay Controls (Touch & Desktop) */}
+      {images.length > 1 && (
+        <div className="absolute top-[20%] sm:top-1/2 left-0 right-0 flex justify-between px-1 sm:px-2 -translate-y-1/2 pointer-events-none transition-opacity z-20">
+          <button 
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); goToPrev(); }} 
+            className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white/90 backdrop-blur-md shadow-lg border border-stone-200/80 flex items-center justify-center text-stone-700 hover:text-black hover:bg-white pointer-events-auto hover:scale-110 active:scale-95 transition-all cursor-pointer"
+            aria-label="Previous photo"
+          >
+            <ChevronLeft className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+          <button 
+            onClick={(e) => { e.preventDefault(); e.stopPropagation(); goToNext(); }} 
+            className="w-8 h-8 sm:w-11 sm:h-11 rounded-full bg-white/90 backdrop-blur-md shadow-lg border border-stone-200/80 flex items-center justify-center text-stone-700 hover:text-black hover:bg-white pointer-events-auto hover:scale-110 active:scale-95 transition-all cursor-pointer"
+            aria-label="Next photo"
+          >
+            <ChevronRight className="w-5 h-5 sm:w-6 sm:h-6" />
+          </button>
+        </div>
+      )}
     </div>
   );
 }

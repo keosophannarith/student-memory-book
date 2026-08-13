@@ -249,7 +249,7 @@ export function SelectionModal({
                       <p className="text-base font-sans">មិនមានឈ្មោះសិស្សក្នុងថ្នាក់នេះឡើយ</p>
                     </div>
                   ) : (
-                    <div className="grid grid-cols-1 gap-2">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {filteredStudents.map((s) => {
                         const isSelected = s.id === studentId;
                         const isKhmerName = isKhmer(s.name);
