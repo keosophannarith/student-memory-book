@@ -20,12 +20,12 @@ export function Scrapbook() {
   return (
     <div className="min-h-screen w-full bg-[#eaeaeb] text-stone-800 font-sans flex flex-col items-center overflow-x-hidden relative">
       
-      <div className="w-full flex-1 flex flex-col items-center max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl relative px-2 sm:px-6 lg:px-8">
+      <div className="w-full flex-1 flex flex-col items-center max-w-full sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl relative px-2 sm:px-6 lg:px-8 scrapbook-wrapper">
         
         {/* Error banner removed */}
 
         {/* 3D BookWrapper */}
-        <div className="flex-1 w-full relative my-2 sm:my-6 md:my-8 z-10 perspective-[2000px] min-h-[580px] sm:min-h-[660px] md:min-h-[740px] lg:min-h-[800px] h-[calc(100vh-2rem)] sm:h-auto max-h-[920px]">
+        <div className="flex-1 w-full relative my-2 sm:my-4 md:my-6 z-10 perspective-[2000px] min-h-[620px] sm:min-h-[740px] md:min-h-[820px] lg:min-h-[880px] h-auto book-container">
           
           {/* Inner Book Content */}
           <div className="absolute inset-0 bg-[#fdfcfaf0] shadow-md sm:shadow-[0_20px_50px_rgba(0,0,0,0.12),_0_0_0_1px_rgba(0,0,0,0.06)] rounded-xl sm:rounded-tl-md sm:rounded-tr-[2.5rem] flex flex-col border border-stone-200/80 overflow-hidden">
@@ -43,7 +43,7 @@ export function Scrapbook() {
             </div>
 
              {/* Binder rings edge (Mobile Phone) */}
-            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-stone-100 to-white flex flex-col justify-evenly py-6 z-20 shadow-[inset_-2px_0_4px_rgba(0,0,0,0.03)] sm:hidden border-r border-stone-200/60 pointer-events-none">
+            <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-r from-stone-100 to-white flex flex-col justify-evenly py-6 z-20 shadow-[inset_-2px_0_4px_rgba(0,0,0,0.03)] sm:hidden border-r border-stone-200/60 pointer-events-none binder-rings-mobile">
               {Array.from({ length: 16 }).map((_, i) => (
                 <div key={i} className="relative w-2 h-3 mx-auto rounded-full bg-[#f0eee9] shadow-[inset_0_2px_4px_rgba(0,0,0,0.2)] border border-stone-300">
                    {/* Outer Ring */}
@@ -53,7 +53,7 @@ export function Scrapbook() {
             </div>
             
             {/* Page Content Viewport */}
-            <div className="group pl-10 sm:pl-[85px] md:pl-[110px] pr-3 sm:pr-8 md:pr-12 lg:pr-16 py-4 sm:py-8 md:py-10 flex-1 w-full relative z-10 overflow-hidden bg-white/50 flex flex-col">
+            <div className="group pl-10 sm:pl-[85px] md:pl-[110px] pr-3 sm:pr-8 md:pr-12 lg:pr-16 py-4 sm:py-8 md:py-10 flex-1 w-full relative z-10 overflow-hidden bg-white/50 flex flex-col page-viewport">
               
               {/* Subtle paper texture overlay */}
               <div className="absolute inset-0 opacity-[0.03] mix-blend-multiply pointer-events-none z-0" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/cream-paper.png')" }}></div>

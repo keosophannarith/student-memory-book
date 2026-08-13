@@ -28,7 +28,7 @@ export function useDriveImages(folderId?: string) {
     try {
       // Query to get only images inside the specified folder
       const q = `'${folderId}' in parents and mimeType contains 'image/' and trashed=false`;
-      const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}&fields=files(id,name,thumbnailLink,description)&key=${API_KEY}`;
+      const url = `https://www.googleapis.com/drive/v3/files?q=${encodeURIComponent(q)}&fields=files(id,name,thumbnailLink,description,imageMediaMetadata)&key=${API_KEY}`;
       
       const response = await fetch(url);
       const data = await response.json();

@@ -77,14 +77,14 @@ export function BookCover({
         <div className="absolute inset-4 sm:inset-8 border border-[#d4af37]/40 rounded-sm sm:rounded-r-[1.5rem] pointer-events-none"></div>
         <div className="absolute inset-6 sm:inset-10 border-2 border-[#d4af37]/70 rounded-sm sm:rounded-r-[1.2rem] pointer-events-none"></div>
 
-        <div className="relative z-10 flex flex-col items-center w-full grow py-10 sm:py-14 top-0 bottom-0">
+        <div className="relative z-10 flex flex-col items-center w-full grow py-10 sm:py-14 top-0 bottom-0 cover-inner">
           
           {/* Top spacer for logo */}
-          <div className="flex-[1] min-h-[0.5rem]"></div>
+          <div className="flex-[1] min-h-[0.25rem]"></div>
 
           {/* Logo container */}
           <motion.div 
-            className="w-20 h-20 sm:w-28 sm:h-28 flex items-center justify-center z-20 shrink-0"
+            className="w-20 h-20 sm:w-28 sm:h-28 flex items-center justify-center z-20 shrink-0 cover-logo"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
           >
@@ -96,23 +96,23 @@ export function BookCover({
           </motion.div>
           
           {/* Spacer between logo and text */}
-          <div className="flex-[1] min-h-[0.5rem]"></div>
+          <div className="flex-[1] min-h-[0.25rem]"></div>
 
           {/* Book Title */}
-          <h1 className="text-center text-3xl sm:text-4xl lg:text-5xl font-serif text-[#d4af37] leading-tight drop-shadow-md mb-4 sm:mb-6 uppercase tracking-[0.15em] px-4 max-w-2xl shrink-0">
+          <h1 className="text-center text-3xl sm:text-4xl lg:text-5xl font-serif text-[#d4af37] leading-tight drop-shadow-md mb-4 sm:mb-6 uppercase tracking-[0.15em] px-4 max-w-2xl shrink-0 cover-title">
             Student Learning
-            <span className="block mt-2 text-[#f4d068]">Activities</span>
+            <span className="block mt-2 text-[#f4d068] cover-title-sub">Activities</span>
           </h1>
           
           {/* Subtitle */}
-          <div className="flex items-center gap-4 mb-6 sm:mb-8 shrink-0">
+          <div className="flex items-center gap-4 mb-6 sm:mb-8 shrink-0 cover-annually">
             <div className="w-6 sm:w-16 h-[1px] bg-[#d4af37]/50"></div>
             <span className="text-[#d4af37] font-serif text-base sm:text-xl tracking-[0.2em] sm:tracking-[0.3em] uppercase">Annually</span>
             <div className="w-6 sm:w-16 h-[1px] bg-[#d4af37]/50"></div>
           </div>
 
           {/* Selectors Group - Clean Text Triggers */}
-          <div className="flex flex-col items-center gap-3 shrink-0 z-30 mb-6 sm:mb-8 w-full max-w-md px-4">
+          <div className="flex flex-col items-center gap-3 shrink-0 z-30 mb-6 sm:mb-8 w-full max-w-md px-4 cover-selectors">
             
             {/* Class Selector Trigger */}
             <motion.button
@@ -121,7 +121,7 @@ export function BookCover({
               onClick={openClassModal}
               className="text-[#d4af37] hover:text-[#f4d068] transition-colors cursor-pointer text-center max-w-full py-1 px-3"
             >
-              <span className={`text-lg sm:text-2xl tracking-wider block ${
+              <span className={`text-lg sm:text-2xl tracking-wider block cover-trigger-text ${
                 selectedClass && isKhmer(selectedClass.name) ? 'font-moul text-base sm:text-xl text-[#f4d068]' : 'font-serif'
               }`}>
                 {selectedClass ? selectedClass.name : 'SELECT CLASS'}
@@ -137,7 +137,7 @@ export function BookCover({
                 selectedStudent ? 'opacity-100' : 'opacity-80'
               }`}
             >
-              <span className={`text-lg sm:text-2xl tracking-wider block ${
+              <span className={`text-lg sm:text-2xl tracking-wider block cover-trigger-text ${
                 selectedStudent && isKhmer(selectedStudent.name) ? 'font-moul text-base sm:text-xl text-[#f4d068]' : 'font-serif'
               }`}>
                 {selectedStudent ? selectedStudent.name : 'SELECT STUDENT'}
@@ -146,11 +146,11 @@ export function BookCover({
           </div>
 
           {/* Bottom spacer */}
-          <div className="flex-[0.5] min-h-[0.5rem]"></div>
+          <div className="flex-[0.5] min-h-[0.25rem]"></div>
 
           {/* Academic Year */}
           <div className="mt-auto shrink-0 pb-2">
-            <p className="text-[#d4af37]/80 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-serif uppercase">
+            <p className="text-[#d4af37]/80 text-xs sm:text-sm tracking-[0.2em] sm:tracking-[0.3em] font-serif uppercase cover-year">
               ACADEMIC YEAR 2026-2027
             </p>
           </div>

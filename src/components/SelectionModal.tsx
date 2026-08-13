@@ -2,7 +2,6 @@ import React, { useState, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Search, Check, GraduationCap, Users, School, Sparkles } from 'lucide-react';
 import { DriveFolder } from '../types';
-import { isKhmer } from '../lib/utils';
 
 interface SelectionModalProps {
   isOpen: boolean;
@@ -70,7 +69,7 @@ export function SelectionModal({
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-hidden">
+        <div className="fixed inset-0 z-[100] flex items-center justify-center p-4 sm:p-6 overflow-hidden font-roboto">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -87,24 +86,24 @@ export function SelectionModal({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 15 }}
             transition={{ type: 'spring', damping: 25, stiffness: 350 }}
-            className="relative w-full max-w-lg bg-[#1e293b] border-2 border-[#d4af37]/60 rounded-2xl shadow-[0_0_50px_rgba(212,175,55,0.25)] overflow-hidden flex flex-col max-h-[85vh] z-10"
+            className="relative w-full max-w-lg bg-[#1e293b] border-2 border-[#d4af37]/60 rounded-2xl shadow-[0_0_50px_rgba(212,175,55,0.25)] overflow-hidden flex flex-col max-h-[85vh] z-10 font-roboto selection-modal-container"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Texture background */}
             <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('https://www.transparenttextures.com/patterns/leather.png')" }}></div>
 
             {/* Header */}
-            <div className="relative z-10 p-5 sm:p-6 pb-3 border-b border-[#d4af37]/20 bg-slate-900/40 flex items-center justify-between shrink-0">
+            <div className="relative z-10 p-5 sm:p-6 pb-3 border-b border-[#d4af37]/20 bg-slate-900/40 flex items-center justify-between shrink-0 selection-modal-header">
               <div className="flex items-center gap-3">
                 <div className="w-10 h-10 rounded-full bg-[#d4af37]/10 border border-[#d4af37]/40 flex items-center justify-center text-[#d4af37]">
                   <Sparkles className="w-5 h-5" />
                 </div>
                 <div>
-                  <h3 className="font-serif text-lg sm:text-xl text-[#d4af37] font-semibold tracking-wide">
-                    ជ្រើសរើសព័ត៌មានសិស្ស
-                  </h3>
-                  <p className="text-xs text-[#d4af37]/70 font-sans tracking-wider uppercase">
+                  <h3 className="font-roboto text-lg sm:text-xl text-[#d4af37] font-semibold tracking-wide">
                     Select Class & Student
+                  </h3>
+                  <p className="text-xs text-[#d4af37]/70 font-roboto tracking-wider uppercase">
+                    Choose a class and student
                   </p>
                 </div>
               </div>
@@ -118,19 +117,19 @@ export function SelectionModal({
             </div>
 
             {/* Tabs */}
-            <div className="relative z-10 p-4 pb-2 bg-slate-900/20 shrink-0">
+            <div className="relative z-10 p-4 pb-2 bg-slate-900/20 shrink-0 font-roboto">
               <div className="grid grid-cols-2 gap-2 bg-slate-950/60 p-1.5 rounded-xl border border-[#d4af37]/30">
                 <button
                   onClick={() => { setActiveTab('class'); setSearchTerm(''); }}
-                  className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm sm:text-base font-medium transition-all duration-200 cursor-pointer ${
+                  className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm sm:text-base font-roboto font-medium transition-all duration-200 cursor-pointer ${
                     activeTab === 'class'
-                      ? 'bg-gradient-to-r from-[#d4af37] to-[#f4d068] text-slate-950 shadow-md font-semibold'
+                      ? 'bg-gradient-to-r from-[#d4af37] to-[#f4d068] text-slate-950 shadow-md font-bold'
                       : 'text-[#d4af37]/80 hover:text-[#d4af37] hover:bg-white/5'
                   }`}
                 >
                   <School className="w-4 h-4 shrink-0" />
-                  <span className={selectedClass && isKhmer(selectedClass.name) ? 'font-moul text-xs' : ''}>
-                    {selectedClass ? selectedClass.name : 'ថ្នាក់ (Class)'}
+                  <span className="font-roboto font-medium">
+                    {selectedClass ? selectedClass.name : 'Class'}
                   </span>
                 </button>
 
@@ -142,17 +141,17 @@ export function SelectionModal({
                     }
                   }}
                   disabled={!classId}
-                  className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm sm:text-base font-medium transition-all duration-200 ${
+                  className={`flex items-center justify-center gap-2 py-2.5 px-3 rounded-lg text-sm sm:text-base font-roboto font-medium transition-all duration-200 ${
                     !classId ? 'opacity-40 cursor-not-allowed text-slate-500' : 'cursor-pointer'
                   } ${
                     activeTab === 'student'
-                      ? 'bg-gradient-to-r from-[#d4af37] to-[#f4d068] text-slate-950 shadow-md font-semibold'
+                      ? 'bg-gradient-to-r from-[#d4af37] to-[#f4d068] text-slate-950 shadow-md font-bold'
                       : classId ? 'text-[#d4af37]/80 hover:text-[#d4af37] hover:bg-white/5' : ''
                   }`}
                 >
                   <GraduationCap className="w-4 h-4 shrink-0" />
-                  <span className={selectedStudent && isKhmer(selectedStudent.name) ? 'font-moul text-xs' : ''}>
-                    {selectedStudent ? selectedStudent.name : 'សិស្ស (Student)'}
+                  <span className="font-roboto font-medium">
+                    {selectedStudent ? selectedStudent.name : 'Student'}
                   </span>
                 </button>
               </div>
@@ -164,17 +163,17 @@ export function SelectionModal({
                   type="text"
                   placeholder={
                     activeTab === 'class'
-                      ? 'ស្វែងរកថ្នាក់ / Search Class...'
-                      : 'ស្វែងរកឈ្មោះសិស្ស / Search Student...'
+                      ? 'Search Class...'
+                      : 'Search Student...'
                   }
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full bg-slate-950/50 border border-[#d4af37]/30 focus:border-[#d4af37] text-[#d4af37] placeholder-[#d4af37]/40 text-sm rounded-xl pl-10 pr-4 py-2.5 outline-none transition-all"
+                  className="w-full bg-slate-950/50 border border-[#d4af37]/30 focus:border-[#d4af37] text-[#d4af37] placeholder-[#d4af37]/40 text-sm rounded-xl pl-10 pr-4 py-2.5 outline-none transition-all font-roboto"
                 />
                 {searchTerm && (
                   <button
                     onClick={() => setSearchTerm('')}
-                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#d4af37]/60 hover:text-[#d4af37]"
+                    className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-[#d4af37]/60 hover:text-[#d4af37] font-roboto"
                   >
                     Clear
                   </button>
@@ -183,24 +182,23 @@ export function SelectionModal({
             </div>
 
             {/* List Body */}
-            <div className="relative z-10 p-4 sm:p-5 overflow-y-auto grow min-h-[260px] custom-scrollbar">
+            <div className="relative z-10 p-4 sm:p-5 overflow-y-auto grow min-h-[260px] custom-scrollbar font-roboto selection-modal-body">
               {activeTab === 'class' ? (
                 /* Classes View */
                 <div>
                   {classesLoading ? (
-                    <div className="flex flex-col items-center justify-center py-12 text-[#d4af37]/70 gap-3">
+                    <div className="flex flex-col items-center justify-center py-12 text-[#d4af37]/70 gap-3 font-roboto">
                       <div className="w-8 h-8 border-2 border-[#d4af37] border-t-transparent rounded-full animate-spin"></div>
-                      <p className="text-sm font-sans animate-pulse">កំពុងទាញយកទិន្នន័យថ្នាក់...</p>
+                      <p className="text-sm font-roboto animate-pulse">Loading classes...</p>
                     </div>
                   ) : filteredClasses.length === 0 ? (
-                    <div className="text-center py-12 text-[#d4af37]/60">
-                      <p className="text-base font-sans">មិនមានទិន្នន័យថ្នាក់ឡើយ</p>
+                    <div className="text-center py-12 text-[#d4af37]/60 font-roboto">
+                      <p className="text-base font-roboto">No classes found</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                       {filteredClasses.map((c) => {
                         const isSelected = c.id === classId;
-                        const isKhmerName = isKhmer(c.name);
 
                         return (
                           <motion.button
@@ -220,7 +218,7 @@ export function SelectionModal({
                               }`}>
                                 <School className="w-4 h-4" />
                               </div>
-                              <span className={`text-base truncate ${isKhmerName ? 'font-moul text-sm text-[#f4d068]' : 'font-serif'}`}>
+                              <span className="text-base font-roboto font-medium truncate">
                                 {c.name}
                               </span>
                             </div>
@@ -240,19 +238,18 @@ export function SelectionModal({
                 /* Students View */
                 <div>
                   {studentsLoading ? (
-                    <div className="flex flex-col items-center justify-center py-12 text-[#d4af37]/70 gap-3">
+                    <div className="flex flex-col items-center justify-center py-12 text-[#d4af37]/70 gap-3 font-roboto">
                       <div className="w-8 h-8 border-2 border-[#d4af37] border-t-transparent rounded-full animate-spin"></div>
-                      <p className="text-sm font-sans animate-pulse">កំពុងទាញយកឈ្មោះសិស្ស...</p>
+                      <p className="text-sm font-roboto animate-pulse">Loading student names...</p>
                     </div>
                   ) : filteredStudents.length === 0 ? (
-                    <div className="text-center py-12 text-[#d4af37]/60">
-                      <p className="text-base font-sans">មិនមានឈ្មោះសិស្សក្នុងថ្នាក់នេះឡើយ</p>
+                    <div className="text-center py-12 text-[#d4af37]/60 font-roboto">
+                      <p className="text-base font-roboto">No students found in this class</p>
                     </div>
                   ) : (
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                       {filteredStudents.map((s) => {
                         const isSelected = s.id === studentId;
-                        const isKhmerName = isKhmer(s.name);
 
                         return (
                           <motion.button
@@ -272,7 +269,7 @@ export function SelectionModal({
                               }`}>
                                 <Users className="w-4 h-4" />
                               </div>
-                              <span className={`text-lg truncate ${isKhmerName ? 'font-moul text-base text-[#f4d068] leading-relaxed' : 'font-serif'}`}>
+                              <span className="text-base font-roboto font-medium truncate">
                                 {s.name}
                               </span>
                             </div>
@@ -292,11 +289,11 @@ export function SelectionModal({
             </div>
 
             {/* Footer */}
-            <div className="relative z-10 p-4 border-t border-[#d4af37]/20 bg-slate-900/60 flex items-center justify-between shrink-0">
-              <div className="text-xs text-[#d4af37]/60 font-sans">
+            <div className="relative z-10 p-4 border-t border-[#d4af37]/20 bg-slate-900/60 flex items-center justify-between shrink-0 font-roboto">
+              <div className="text-xs text-[#d4af37]/60 font-roboto">
                 {classId && (
                   <span>
-                    ថ្នាក់: <strong className="text-[#d4af37]">{selectedClass?.name || 'Selected'}</strong>
+                    Class: <strong className="text-[#d4af37] font-medium">{selectedClass?.name || 'Selected'}</strong>
                   </span>
                 )}
               </div>
@@ -304,9 +301,9 @@ export function SelectionModal({
               <div className="flex items-center gap-2">
                 <button
                   onClick={onClose}
-                  className="px-4 py-2 rounded-xl border border-[#d4af37]/30 text-[#d4af37] hover:bg-white/5 text-sm font-medium transition-all cursor-pointer"
+                  className="px-4 py-2 rounded-xl border border-[#d4af37]/30 text-[#d4af37] hover:bg-white/5 text-sm font-roboto font-medium transition-all cursor-pointer"
                 >
-                  បិទ (Close)
+                  Close
                 </button>
               </div>
             </div>
@@ -316,3 +313,4 @@ export function SelectionModal({
     </AnimatePresence>
   );
 }
+

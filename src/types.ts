@@ -3,6 +3,11 @@ export interface DriveImage {
   name: string;
   thumbnailLink?: string;
   description?: string;
+  imageMediaMetadata?: {
+    width?: number;
+    height?: number;
+    rotation?: number;
+  };
 }
 
 export interface DriveFolder {

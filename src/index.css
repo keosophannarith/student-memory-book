@@ -1,9 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Moul&family=Kantumruuy+Pro:ital,wght@0,300..700;1,300..700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&family=Moul&family=Kantumruuy+Pro:ital,wght@0,300..700;1,300..700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Inter", "Kantumruuy Pro", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Roboto", "Inter", "Kantumruuy Pro", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Playfair Display", "Moul", ui-serif, Georgia, serif;
+}
+
+.font-roboto {
+  font-family: 'Roboto', sans-serif;
 }
 
 .font-moul {
@@ -13,4 +17,147 @@
 .font-khmer {
   font-family: 'Kantumruuy Pro', 'Inter', sans-serif;
 }
+
+/* Mobile Landscape & Short Viewport Optimizations */
+@media (max-height: 550px) and (orientation: landscape) {
+  .scrapbook-wrapper {
+    padding-left: 0.25rem !important;
+    padding-right: 0.25rem !important;
+  }
+
+  .book-container {
+    height: calc(100vh - 0.5rem) !important;
+    min-height: 0 !important;
+    max-height: 100vh !important;
+    margin-top: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+  }
+
+  /* Cover elements */
+  .cover-inner {
+    padding-top: 0.35rem !important;
+    padding-bottom: 0.35rem !important;
+  }
+
+  .cover-logo {
+    width: 3.25rem !important;
+    height: 3.25rem !important;
+  }
+
+  .cover-title {
+    font-size: 1.2rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 0.2rem !important;
+    letter-spacing: 0.08em !important;
+  }
+
+  .cover-title-sub {
+    margin-top: 0.1rem !important;
+  }
+
+  .cover-annually {
+    margin-bottom: 0.25rem !important;
+    font-size: 0.7rem !important;
+  }
+
+  .cover-selectors {
+    margin-bottom: 0.2rem !important;
+    gap: 0.15rem !important;
+  }
+
+  .cover-trigger-text {
+    font-size: 0.95rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .cover-year {
+    font-size: 0.65rem !important;
+    letter-spacing: 0.15em !important;
+  }
+
+  /* Page Content Viewport */
+  .page-viewport {
+    padding-top: 0.4rem !important;
+    padding-bottom: 0.4rem !important;
+    padding-left: 2.5rem !important;
+    padding-right: 0.75rem !important;
+  }
+
+  /* Side-by-side open book layout in landscape */
+  .carousel-item-container {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    padding-bottom: 0 !important;
+    height: 100% !important;
+  }
+
+  .carousel-photo-section {
+    width: 48% !important;
+    height: 100% !important;
+    margin-bottom: 0 !important;
+    padding: 0.25rem !important;
+  }
+
+  .carousel-caption-section {
+    width: 52% !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    margin-bottom: 0 !important;
+    padding-left: 0.5rem !important;
+  }
+
+  .carousel-caption-header {
+    margin-bottom: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  .carousel-caption-text {
+    font-size: 0.85rem !important;
+    line-height: 1.35rem !important;
+    background-size: 100% 1.35rem !important;
+    min-height: 60px !important;
+  }
+
+  /* Binder Rings */
+  .binder-rings-mobile {
+    padding-top: 0.25rem !important;
+    padding-bottom: 0.25rem !important;
+  }
+
+  /* Selection Modal */
+  .selection-modal-container {
+    max-height: 96vh !important;
+  }
+
+  .selection-modal-header {
+    padding: 0.5rem 1rem !important;
+  }
+
+  .selection-modal-body {
+    padding: 0.5rem 0.75rem !important;
+    min-height: 120px !important;
+  }
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 4px;
+  width: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.05);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(212, 175, 55, 0.5);
+  border-radius: 4px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 175, 55, 0.8);
+}
+
 
