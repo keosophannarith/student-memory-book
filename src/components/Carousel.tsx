@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight, Image as ImageIcon, Calendar as CalendarIcon
 import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
 import { useDriveImages } from '../hooks/useDriveImages';
 import { useDriveFolderDocs } from '../hooks/useDriveFolderDocs';
+import { isKhmer } from '../lib/utils';
 
 interface CarouselProps {
   folderId?: string;
@@ -159,16 +160,24 @@ export function Carousel({ folderId, date }: CarouselProps) {
               <BookOpen className="w-4 h-4" />
             </div>
 
-            <p className="w-full leading-[2.5rem] text-stone-800 text-lg md:text-xl font-serif"
-               style={{
-                 backgroundImage: 'linear-gradient(transparent, transparent 39px, #f4f0e6 39px, #f4f0e6 40px)',
-                 backgroundSize: '100% 40px',
-                 lineHeight: '40px',
-                 minHeight: '120px'
-               }}
-            >
-                {currentImage?.description || docText || "មិនមានការបរិយាយ (No description...)"}
-            </p>
+            {(() => {
+              const textContent = currentImage?.description || docText || "មិនមានការបរិយាយ (No description...)";
+              const textIsKhmer = isKhmer(textContent);
+              return (
+                <p 
+                  className={`w-full leading-[2.5rem] text-stone-800 text-lg md:text-xl ${textIsKhmer ? 'font-khmer' : 'font-serif'}`}
+                  style={{
+                    backgroundImage: 'linear-gradient(transparent, transparent 39px, #f4f0e6 39px, #f4f0e6 40px)',
+                    backgroundSize: '100% 40px',
+                    lineHeight: '40px',
+                    minHeight: '120px'
+                  }}
+                >
+                  {textContent}
+                </p>
+              );
+            })()}
+
           </div>
         </motion.div>
       </AnimatePresence>
